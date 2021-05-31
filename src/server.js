@@ -1,5 +1,4 @@
-// require('dotenv').config()
-
+if (process.env.NODE_ENV === 'dev') require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(session)
@@ -14,7 +13,7 @@ app.use(session({
     store: new SQLiteStore({
       db: 'sessions.db'
     }),
-    secret: 's',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -23,11 +22,10 @@ app.use(session({
   }))
 
 app.use(express.json())
-
+console.log(process.env.NODE_ENV)
 app.use('/api', router)
 app.use('/static', express.static(path.join(__dirname, '/../public/')))
 app.get(/.*/, (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')))
-
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
