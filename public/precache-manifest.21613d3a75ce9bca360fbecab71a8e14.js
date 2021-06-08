@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "js/register.d715bf1c.js"
   },
   {
-    "revision": "e224f6beb7bed2c3b1ad0bb524958910",
+    "revision": "799b5d291df724655efe5a30520df69c",
     "url": "manifest.json"
   },
   {
