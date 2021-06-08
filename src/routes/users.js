@@ -41,9 +41,52 @@ module.exports.login = async (req, res) => {
         role: user.role,
         username: user.username
       }
-      console.log('sending')
       return res.status(200).json(req.session.user)
     } catch (error) {
       return res.status(500).json({ message: error })
     }
+}
+
+module.exports.register = async (req, res) => {
+  const { username, email, password } = req.body
+
+  if (!username || !password || !email) {
+    return res.status(400).json({
+      message: 'Incomplete request'
+    })
   }
+
+  if (!validateEmail(email)) {
+    return res.status(400).json({
+      message: 'Email must be valid'
+    })
+  }
+
+  const user = new User({ email, username, password })
+
+  try {
+    await user.save()
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({
+        message: 'This username or email is already used'
+      })
+    }
+
+    return res.status(500).json({
+      message: 'Database error',
+      error: error
+    })
+  }
+
+  /* if (!config.skipEmailVerification) {
+    mailer.sendVerificationEmail(username, email)
+  } */
+
+  res.status(200).end()
+}
+
+module.exports.logout = (req, res) => {
+  req.session.destroy()
+  res.status(200).end()
+}

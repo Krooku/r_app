@@ -6,6 +6,10 @@ const CarSchema = mongoose.Schema({
     required: true,
     unique: true
   },
+  rentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: null
+  },
   brand: {
     type: String,
     required: true
@@ -22,10 +26,6 @@ const CarSchema = mongoose.Schema({
   vin: {
     type: String,
     required: true,
-  },
-  isRented: {
-    type: Boolean,
-    default: false
   }
 }, {
   versionKey: false,

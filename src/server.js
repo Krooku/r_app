@@ -1,4 +1,6 @@
-if (process.env.NODE_ENV === 'dev') require('dotenv').config()
+
+// if (process.env.NODE_ENV === 'dev') 
+require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(session)
@@ -22,10 +24,11 @@ app.use(session({
   }))
 
 app.use(express.json())
-console.log(process.env.NODE_ENV)
 app.use('/api', router)
 app.use('/static', express.static(path.join(__dirname, '/../public/')))
 app.get(/.*/, (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')))
+
+const Rent = require('./models/Rent')
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -41,4 +44,6 @@ mongoose.connect(process.env.DATABASE_URL, {
     console.error(error)
     process.exit()
   })
+
+
   
