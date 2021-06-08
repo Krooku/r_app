@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "css/mainStyle.5e386653.css"
   },
   {
-    "revision": "fc8075c317bdac198075c598b66cd05e",
+    "revision": "d0feb721f341a4390cf34d02263b53c0",
     "url": "index.html"
   },
   {
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "js/register.d715bf1c.js"
   },
   {
-    "revision": "3f4babb3ad755ea12bca0dfea3f3ca3b",
+    "revision": "e224f6beb7bed2c3b1ad0bb524958910",
     "url": "manifest.json"
   },
   {
