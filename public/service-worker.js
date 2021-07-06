@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.87436bdd6950b73840f308f5daa52cd8.js"
+  "precache-manifest.50b8c6d3513916f82d621cffc4625855.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "car_rental"});
