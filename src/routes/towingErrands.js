@@ -11,10 +11,10 @@ module.exports.insertPhotos = async (req, res) => {
     })
   }
 
-  const TowingErrand = new TowingErrand({ errandNumber, photos })
+  const towingErrand = new TowingErrand({ errandNumber, photos })
 
   try {
-    await TowingErrand.save()
+    await towingErrand.save()
   } catch (error) {
     if (error.code === 11000) {
       return res.status(409).json({
