@@ -3,7 +3,8 @@ const TowingErrand = require('../models/TowingErrand')
 
 module.exports.insertPhotos = async (req, res) => {
   const { errandNumber, photos } = req.body
-
+  console.log(errandNumber)
+  console.log(photos)
   if (!errandNumber || !photos) {
     return res.status(400).json({
       message: 'Incomplete request'
