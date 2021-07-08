@@ -1,4 +1,4 @@
-const TowingErrand = require('../models/TowingErrnad')
+const TowingErrand = require('../models/TowingErrand')
 
 
 module.exports.insertPhotos = async (req, res) => {
