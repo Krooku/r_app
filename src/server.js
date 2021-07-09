@@ -22,13 +22,12 @@ app.use(session({
       httpOnly: true
     }
   }))
-
+app.use(express.bodyParser({limit: '100mb'}));
 app.use(express.json())
 app.use('/api', router)
 app.use('/static', express.static(path.join(__dirname, '/../public/')))
 app.get(/.*/, (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')))
 
-const Rent = require('./models/Rent')
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
