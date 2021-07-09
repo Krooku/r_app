@@ -1,6 +1,6 @@
 
 // if (process.env.NODE_ENV === 'dev') 
-// require('dotenv').config()
+require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(session)
@@ -22,8 +22,9 @@ app.use(session({
       httpOnly: true
     }
   }))
-app.use(express.bodyParser({limit: '100mb'}));
 app.use(express.json())
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({extended: true, limit: '50mb'}));
 app.use('/api', router)
 app.use('/static', express.static(path.join(__dirname, '/../public/')))
 app.get(/.*/, (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')))
