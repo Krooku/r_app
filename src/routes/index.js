@@ -13,6 +13,8 @@ router.post('/register', verifyLogin, auth.register)
 router.get('/user', verifyLogin, auth.getUser)
 
 router.post('/towingErrand', verifyLogin, towingErrand.insertPhotos)
+router.get('/towingErrand/:id', verifyLogin, towingErrand.getTowingErrand)
+router.get('/towingErrands', verifyLogin, towingErrand.listTowingErrands)
 
 router.post('/car', verifyLogin, car.insertCar)
 router.get('/car/:id', verifyLogin, car.getCar)

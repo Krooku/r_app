@@ -3,8 +3,6 @@ const TowingErrand = require('../models/TowingErrand')
 
 module.exports.insertPhotos = async (req, res) => {
   const { errandNumber, photos } = req.body
-  console.log(errandNumber)
-  console.log(photos)
   if (!errandNumber || !photos) {
     return res.status(400).json({
       message: 'Incomplete request'
@@ -27,5 +25,38 @@ module.exports.insertPhotos = async (req, res) => {
       error: error
     })
   }
-  res.status(200).end()
+  console.log(towingErrand._id)
+  res.status(200).json(towingErrand._id)
 }
+
+module.exports.getTowingErrand = async (req, res) => {
+    const { id } = req.params
+  
+    if (!id) {
+      return res.status(400).json({
+        message: 'Incomplete request'
+      })
+    }
+  
+    const towingErrand = await TowingErrand.findOne({
+      _id: id
+    }).exec()
+  
+    if (!towingErrand) {
+      return res.status(404).json({
+        message: 'Errand does not exist'
+      })
+    }
+    res.status(200).json(towingErrand)
+  }
+  
+  module.exports.listTowingErrands = async (req, res) => {
+    await TowingErrand.find().select('errandNumber').exec().then(towingErrands => {
+      res.status(200).json(towingErrands)
+    }).catch(err => {
+      return res.status(500).json({
+        message: 'Database error',
+        err
+    })
+  })
+  }
