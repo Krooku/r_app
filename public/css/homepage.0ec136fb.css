@@ -1,0 +1,1 @@
+.radio_box{width:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:10px}.radio_box .option{width:70px;display:block;padding:16px;background-color:red;text-align:center;border-radius:3px}.radio_box .option:nth-child(2){margin:0 10px}.radio_box .option--active{background-color:green}
