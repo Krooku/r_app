@@ -142,7 +142,6 @@ module.exports.addImage = async (req, res) => {
             message: 'Incomplete request'
         })
     }
-    console.log(image)
     const towingErrand = await TowingErrand.findOneAndUpdate({_id: errandId},
     { $push: { photos: image } },
     { new: true }
@@ -153,6 +152,7 @@ module.exports.addImage = async (req, res) => {
             message: 'Errand does not exist or no permission'
         })
     }
+    console.log('zapisano zdj')
     res.status(200).json(towingErrand.photos.length)
 }
 

@@ -3,6 +3,7 @@ const auth = require('./users')
 const car = require('./car')
 const towingErrand = require('./towingErrands')
 const rents = require('./rents')
+const image = require('./images')
 const router = express.Router()
 
 const verifyLogin = require('../middleware/verifyLogin')
@@ -18,7 +19,9 @@ router.patch('/towingErrand2', verifyLogin, towingErrand.updateTowingErrandDrive
 router.patch('/towingErrand3', verifyLogin, towingErrand.updateTowingErrandTowing)
 router.patch('/towingErrand4', verifyLogin, towingErrand.updateTowingErrandReturn)
 router.patch('/finishTowingErrand', verifyLogin, towingErrand.updateStatus)
-router.patch('/addImage', verifyLogin, towingErrand.addImage)
+
+router.post('/addImage', verifyLogin, image.addImage)
+router.get('/images/:id', verifyLogin, image.getImages)
 
 router.get('/towingErrand/:id', verifyLogin, towingErrand.getTowingErrand)
 router.get('/towingErrands', verifyLogin, towingErrand.listTowingErrands)
