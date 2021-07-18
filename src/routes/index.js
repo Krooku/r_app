@@ -18,6 +18,7 @@ router.patch('/towingErrand2', verifyLogin, towingErrand.updateTowingErrandDrive
 router.patch('/towingErrand3', verifyLogin, towingErrand.updateTowingErrandTowing)
 router.patch('/towingErrand4', verifyLogin, towingErrand.updateTowingErrandReturn)
 router.patch('/finishTowingErrand', verifyLogin, towingErrand.updateStatus)
+router.patch('/addImage', verifyLogin, towingErrand.addImage)
 
 router.get('/towingErrand/:id', verifyLogin, towingErrand.getTowingErrand)
 router.get('/towingErrands', verifyLogin, towingErrand.listTowingErrands)

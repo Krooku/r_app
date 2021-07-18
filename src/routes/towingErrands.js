@@ -135,6 +135,27 @@ module.exports.updateStatus = async (req, res) => {
     res.status(200).json(towingErrand._id)
 }
 
+module.exports.addImage = async (req, res) => {
+    const { errandId, image } = req.body
+    if (!errandId || !image) {
+        return res.status(400).json({
+            message: 'Incomplete request'
+        })
+    }
+    console.log(image)
+    const towingErrand = await TowingErrand.findOneAndUpdate({_id: errandId},
+    { $push: { photos: image } },
+    { new: true }
+    ).exec()
+
+    if (!towingErrand) {
+        res.status(400).json({
+            message: 'Errand does not exist or no permission'
+        })
+    }
+    res.status(200).json(towingErrand.photos.length)
+}
+
 module.exports.insertPhotos = async (req, res) => {
   const { errandNumber, photos } = req.body
   if (!errandNumber || !photos) {
