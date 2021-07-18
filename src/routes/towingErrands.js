@@ -27,7 +27,7 @@ module.exports.insertTowingErrand = async (req, res) => {
 }
 
 module.exports.updateTowingErrandDrive = async (req, res) => {
-    const { errandId, kilometers, date, DMC, incidentPlace, photos, transport, description } = req.body
+    const { errandId, kilometers, date, DMC, incidentPlace, transport, description } = req.body
     console.log(date)
     if (!errandId) {
     return res.status(400).json({
@@ -42,7 +42,6 @@ module.exports.updateTowingErrandDrive = async (req, res) => {
         'journey.drive': date,
     DMC,
     incidentPlace,
-    photos,
     transport,
     description
     }, {
