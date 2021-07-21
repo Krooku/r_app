@@ -40,8 +40,8 @@ const TowingErrandSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['canceled', 'during', 'realized', 'done'],
-        default: 'during'
+        enum: ['Anulowanie', 'W trakcie', 'Zrealizowane'],
+        default: 'W trakcie'
     },
     transport: {
         quantity: { type: Number },
@@ -69,8 +69,8 @@ const TowingErrandSchema = mongoose.Schema({
     description: {
         type: String,
         maxlength: 128
-    },
-
+    }}, {
+        timestamps: true
 })
 
 const TowingErrand = mongoose.model('TowingErrand', TowingErrandSchema)

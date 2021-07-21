@@ -24,7 +24,7 @@ router.post('/addImage', verifyLogin, image.addImage)
 router.get('/images/:id', verifyLogin, image.getImages)
 
 router.get('/towingErrand/:id', verifyLogin, towingErrand.getTowingErrand)
-router.get('/towingErrands', verifyLogin, towingErrand.listTowingErrands)
+router.post('/towingErrands/:filterType', verifyLogin, towingErrand.listTowingErrands)
 
 router.post('/car', verifyLogin, car.insertCar)
 router.get('/car/:id', verifyLogin, car.getCar)

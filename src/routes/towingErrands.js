@@ -203,10 +203,40 @@ module.exports.getTowingErrand = async (req, res) => {
         })
   }
   module.exports.listTowingErrands = async (req, res) => {
-    console.log(req.session.user.role)
-    let filter = { _id: req.session.user.id }
-    if (req.session.user.role !== 'ADMIN') {
+    const { filterType } = req.params
+    const { fromDate, toDate } = req.body
+    let filter = { userId: req.session.user.id }
+    if (req.session.user.role === 'admin') {
         filter = {}
+    }
+    if (filterType == 'today') { // today errands
+        const first = new Date()
+        first.setHours(-2,0,0,0)
+        const second = new Date()
+        second.setHours(-2,0,0,0)
+        second.setDate(second.getDate() + 1)
+        console.log(`${first} ${second}`)
+        filter = {
+            createdAt: {   
+                $gte: new Date().setHours(0,0,0,0), 
+                $lt: new Date().setDate(new Date().getDate() + 1)
+            }
+        }
+    }
+    if (fromDate && toDate) {
+        let gte = new Date(fromDate)
+        console.log(`gte: ${gte}`)
+        gte.setHours(gte.getHours() - 4)
+        let lt = new Date(toDate)
+        lt.setHours(lt.getHours() - 4)
+        lt.setDate(lt.getDate() + 1)
+        console.log(`${gte}\n${lt}`)
+        filter = {
+            createdAt: {   
+                $gte: gte, 
+                $lt: lt
+            }
+        }
     }
     await TowingErrand.find(filter, 'errandNumber status').lean().populate('userId', 'username').exec().then(towingErrands => {
       res.status(200).json(towingErrands)
