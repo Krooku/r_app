@@ -7,10 +7,11 @@ const image = require('./images')
 const router = express.Router()
 
 const verifyLogin = require('../middleware/verifyLogin')
+const verifyRole = require('../middleware/verifyRole')
 
 router.post('/login', auth.login)
 router.post('/logout', verifyLogin, auth.logout)
-router.post('/register', verifyLogin, auth.register)
+router.post('/register', verifyLogin, verifyRole, auth.register)
 router.get('/user', verifyLogin, auth.getUser)
 
 router.post('/towingErrand', verifyLogin, towingErrand.insertPhotos)

@@ -1,4 +1,10 @@
 const Rent = require('../models/Rent')
+const schedule = require('node-schedule');
+
+const job = schedule.scheduleJob('41 * * * *', async () => {
+  console.log('The answer to life, the universe, and everything!');
+});
+
 
 module.exports.createRent = async (req, res) => {
     const userIdStart = req.session.user.id

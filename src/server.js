@@ -1,6 +1,6 @@
 
-// if (process.env.NODE_ENV === 'dev') 
-// require('dotenv').config()
+// if (process.env.NODE_ENV === 'dev')
+require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(session)
@@ -9,7 +9,7 @@ const path = require('path')
 const app = express()
 const mongoose = require('mongoose')
 const router = require('./routes')
-
+console.log(process.env.DATABASE_URL)
 app.use(session({
     // @ts-ignore
     store: new SQLiteStore({
@@ -42,6 +42,3 @@ mongoose.connect(process.env.DATABASE_URL, {
     console.error(error)
     process.exit()
   })
-
-
-  

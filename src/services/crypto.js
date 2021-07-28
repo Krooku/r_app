@@ -45,7 +45,16 @@ async function validatePassword (trial, hashedString) {
   return hashedTrial === hashedString
 }
 
+/**
+ * Compares password with a hash
+ * @returns {string}
+ */
+function generetePassword () {
+  return Math.random().toString(36).slice(-8);
+}
+
 module.exports = {
   hashPassword,
-  validatePassword
+  validatePassword,
+  generetePassword
 }
